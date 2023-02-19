@@ -1,8 +1,6 @@
 package esprit.tn.projetspringbootangular.Entities;
 
 import com.sun.istack.NotNull;
-import jdk.nashorn.internal.objects.annotations.Getter;
-import jdk.nashorn.internal.objects.annotations.Setter;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 

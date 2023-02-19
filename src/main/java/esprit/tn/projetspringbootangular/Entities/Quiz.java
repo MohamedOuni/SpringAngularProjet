@@ -1,10 +1,10 @@
 package esprit.tn.projetspringbootangular.Entities;
 
 
-import jdk.nashorn.internal.objects.annotations.Getter;
-import jdk.nashorn.internal.objects.annotations.Setter;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,7 +12,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "quizzes")
-
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Quiz  implements Serializable {

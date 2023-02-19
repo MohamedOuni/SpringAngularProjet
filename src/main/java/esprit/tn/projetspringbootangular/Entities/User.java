@@ -13,6 +13,7 @@ import java.util.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Builder
 public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

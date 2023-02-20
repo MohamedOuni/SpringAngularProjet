@@ -26,6 +26,6 @@ public class Partnership implements Serializable {
     @Enumerated(EnumType.STRING)
     Status statut;
 
-    @OneToOne(mappedBy = "partnership")
+    @OneToOne(mappedBy = "partnership", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     University university;
 }

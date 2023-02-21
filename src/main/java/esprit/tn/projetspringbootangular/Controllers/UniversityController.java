@@ -1,6 +1,7 @@
 package esprit.tn.projetspringbootangular.Controllers;
 
 import esprit.tn.projetspringbootangular.Dto.UniversityDto;
+import esprit.tn.projetspringbootangular.Entities.Specialities;
 import esprit.tn.projetspringbootangular.Entities.University;
 import esprit.tn.projetspringbootangular.Services.IUniversityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,20 @@ public class UniversityController {
     @GetMapping ("/all")
     List<University> getUniversity(){
         return universityServices.getAllUniversity();
+    }
+
+    @GetMapping ("/allSpeciality/{speciality}")
+    List<University> getUniversityBySpeciality(@PathVariable Specialities speciality){
+        return universityServices.getUniversityBySpeciality(speciality);
+    }
+    @GetMapping ("/allAdresse/{adresse}")
+    List<University> getUniversityByAdresse(@PathVariable  String adresse){
+        return universityServices.getUniversityByAdress(adresse);
+    }
+
+    @GetMapping ("/allVille/{ville}")
+    List<University> getUniversityByVille(@PathVariable  String ville){
+        return universityServices.getUniversityByVille(ville);
     }
 
     @PostMapping()

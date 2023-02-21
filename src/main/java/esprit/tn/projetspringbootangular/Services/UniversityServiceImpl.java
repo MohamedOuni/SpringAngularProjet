@@ -1,6 +1,7 @@
 package esprit.tn.projetspringbootangular.Services;
 
 import esprit.tn.projetspringbootangular.Dto.UniversityDto;
+import esprit.tn.projetspringbootangular.Entities.Specialities;
 import esprit.tn.projetspringbootangular.Entities.University;
 import esprit.tn.projetspringbootangular.Mappers.UniversityMapper;
 import esprit.tn.projetspringbootangular.Repository.UniversityRepository;
@@ -65,5 +66,26 @@ public class UniversityServiceImpl implements IUniversityService   {
                 .stream()
                 .map(university -> UniversityMapper.mapToDto(university))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<University> getUniversityBySpeciality(Specialities speciality) {
+        List<University> universities = new ArrayList<>();
+        universityRepository.findBySpeciality(speciality).forEach(universities::add);
+        return universities;
+    }
+
+    @Override
+    public List<University> getUniversityByAdress(String adresse) {
+        List<University> universities = new ArrayList<>();
+        universityRepository.findByAdresse(adresse).forEach(universities::add);
+        return universities;
+    }
+
+    @Override
+    public List<University> getUniversityByVille(String ville) {
+        List<University> universities = new ArrayList<>();
+        universityRepository.findByVille(ville).forEach(universities::add);
+        return universities;
     }
 }

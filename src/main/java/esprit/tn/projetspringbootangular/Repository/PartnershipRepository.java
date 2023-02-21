@@ -9,4 +9,8 @@ import java.util.List;
 @Repository
 public interface PartnershipRepository  extends JpaRepository<Partnership, Integer> {
     List<Partnership> findByIdPartnership(Integer idPartnership);
+
+
+
+
 }

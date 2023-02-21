@@ -5,12 +5,14 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Partnership implements Serializable {
@@ -25,6 +27,9 @@ public class Partnership implements Serializable {
     Package partnerShip_Package;
     @Enumerated(EnumType.STRING)
     Status statut;
+    Date PartnershipDate;
+    @NonNull
+    Boolean archive;
 
     @OneToOne(mappedBy = "partnership", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     University university;

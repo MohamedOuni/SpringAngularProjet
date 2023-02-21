@@ -10,6 +10,7 @@ import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,12 +77,30 @@ public class PartnershipServiceImpl implements IPartnershipService {
     @Override
     public PartnershipDto addPartnershipAndAssignToUniversity(PartnershipDto partnershipDto) {
         University university = universityRepository
-                .findByNameAndEmailAndAdresseAndVilleAndDoyen(
+                .findFirstByNameAndEmailAndAdresseAndVilleAndDoyen(
                         partnershipDto.getName(),
                         partnershipDto.getEmail(),
                         partnershipDto.getAdresse(),
                         partnershipDto.getVille(),
                         partnershipDto.getDoyen());
+
+        Assert.notNull(university,
+                "University with name {} does not exist"
+                +partnershipDto.getName());
+
+  int activePartnership = partnershipRepository.countByArchiveIsTrueAndAndUniversityIdUniversity(university.getIdUniversity());
+
+  //if this university has already a partnership contract this will throw an exception
+        Assert.isTrue(activePartnership>=1,
+                "University with name {} already has a partnership contract"
+                +partnershipDto.getName());
+
+        Partnership partnership = PartnershipMapper.mapToEntity(partnershipDto);
+        partnership.setUniversity(university);
+
+        //save the new partnership and return a dto object
+
+        return PartnershipMapper.mapToDto(partnershipRepository.save(partnership));
 
     }
 }

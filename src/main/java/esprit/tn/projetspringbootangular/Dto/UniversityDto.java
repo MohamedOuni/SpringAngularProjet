@@ -25,6 +25,7 @@ public class UniversityDto {
     Specialities speciality;
 
     //Attribut Partnership
+    Integer idPartnership;
     String Representative_Name;
     String Representative_Email;
 }

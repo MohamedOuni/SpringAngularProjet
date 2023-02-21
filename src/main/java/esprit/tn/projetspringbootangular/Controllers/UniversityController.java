@@ -39,7 +39,7 @@ public class UniversityController {
     }
 
     @GetMapping ("/all")
-    List<University> getUniversity(){
+    List<University> getAllUniversity(){
         return universityServices.getAllUniversity();
     }
 

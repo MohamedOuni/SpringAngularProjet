@@ -28,6 +28,7 @@ public class PartnershipDto {
     Boolean archive;
 
     //Attribut University
+    Integer idUniversity;
     String name;
     String email;
     String adresse;

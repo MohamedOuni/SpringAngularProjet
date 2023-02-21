@@ -17,12 +17,14 @@ public interface UniversityRepository extends JpaRepository<University, Integer>
 
     List<University> findByVille(String ville);
 
-    List<University> findByNameAndEmailAndAdresseAndVilleAndDoyen(
+    University findFirstByNameAndEmailAndAdresseAndVilleAndDoyen(
     String name,
     String email,
     String adresse,
     String ville,
     String doyen);
+
+
 
 
 

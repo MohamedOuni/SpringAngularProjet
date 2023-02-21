@@ -14,6 +14,7 @@ public class UniversityMapper {
                 .ville(university.getVille())
                 .doyen(university.getDoyen())
                 .speciality(university.getSpeciality())
+                .idPartnership(university.getPartnership().getIdPartnership())
                 .Representative_Name(university.getPartnership().getRepresentative_Name())
                 .Representative_Email(university.getPartnership().getRepresentative_Email())
                 .build();
@@ -22,6 +23,7 @@ public class UniversityMapper {
 
     public static University mapToEntity(UniversityDto universityDto){
         University university = University.builder()
+                .idUniversity(universityDto.getIdUniversity())
                 .name( universityDto.getName())
                 .email( universityDto.getEmail())
                 .doyen( universityDto.getDoyen())

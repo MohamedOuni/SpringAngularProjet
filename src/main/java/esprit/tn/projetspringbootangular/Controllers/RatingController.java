@@ -37,7 +37,7 @@ public class RatingController {
     }
 
     @GetMapping ("/all")
-    List<Rating> getRating(){
+    List<Rating> getAllRating(){
         return ratingServices.getAllRating();
     }
 

@@ -15,6 +15,7 @@ public class PartnershipMapper {
                 .statut(partnership.getStatut())
                 .PartnershipDate(partnership.getPartnershipDate())
                 .archive(partnership.getArchive())
+                .idUniversity(partnership.getUniversity().getIdUniversity())
                 .name(partnership.getUniversity().getName())
                 .email(partnership.getUniversity().getEmail())
                 .doyen(partnership.getUniversity().getDoyen())
@@ -27,6 +28,7 @@ public class PartnershipMapper {
 
     public static Partnership mapToEntity(PartnershipDto partnershipDto){
         Partnership partnership = Partnership.builder()
+                .idPartnership(partnershipDto.getIdPartnership())
                 .Representative_Name(partnershipDto.getRepresentative_Name())
                 .Representative_Email(partnershipDto.getRepresentative_Email())
                 .partnerShip_Package(partnershipDto.getPartnerShip_Package())

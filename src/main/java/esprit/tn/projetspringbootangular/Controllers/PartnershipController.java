@@ -1,6 +1,9 @@
 package esprit.tn.projetspringbootangular.Controllers;
 
+import esprit.tn.projetspringbootangular.Dto.PartnershipDto;
+import esprit.tn.projetspringbootangular.Dto.UniversityDto;
 import esprit.tn.projetspringbootangular.Entities.Partnership;
+import esprit.tn.projetspringbootangular.Entities.University;
 import esprit.tn.projetspringbootangular.Services.IPartnershipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -37,8 +40,13 @@ public class PartnershipController {
     }
 
     @GetMapping ("/all")
-    List<Partnership> getPartnership(){
+    List<Partnership> getAllPartnership(){
         return partnershipServices.getAllPartnership();
+    }
+
+    @PostMapping()
+    public PartnershipDto addPartnershipAndAssignToUniversity(PartnershipDto partnershipDto){
+        return partnershipServices.addPartnershipAndAssignToUniversity(partnershipDto);
     }
 
 

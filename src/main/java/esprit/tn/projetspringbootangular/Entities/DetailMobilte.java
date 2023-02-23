@@ -19,9 +19,9 @@ public class DetailMobilte implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id_det;
-    private String  longitude ;
+    private Double  longitude ;
     private String delegation ;
-    private String latitude ;
+    private Double latitude ;
     private String avantages ;
     private String  plus_details ;
     private String qualification ;
@@ -39,4 +39,5 @@ public class DetailMobilte implements Serializable {
     @OneToOne(mappedBy="details",cascade = {CascadeType.PERSIST,CascadeType.REMOVE })
     @JsonIgnore
     private AnnonceMobilte anMobilte;
+
 }

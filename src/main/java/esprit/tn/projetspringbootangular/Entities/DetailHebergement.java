@@ -22,8 +22,8 @@ public class DetailHebergement implements Serializable {
     private String delegation;
     private String localite;
     private String avantages;
-    private String latitude;
-    private String longtitude;
+    private Double latitude;
+    private Double longtitude;
     private String avis_aide;
     private String contact;
 

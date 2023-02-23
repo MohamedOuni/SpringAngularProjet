@@ -2,6 +2,9 @@ package esprit.tn.projetspringbootangular.Entities;
 
 public enum CategorieMobilite {
     TIC, electromechanical,
-    CivilIngeneuring
+    CivilIngeneuring,
+    Cloud,
+    Infini, GameX,
+    NIDS, BusinessIntelligence
 
 }

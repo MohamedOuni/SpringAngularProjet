@@ -5,6 +5,7 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -38,10 +39,10 @@ public class University implements Serializable {
     Set<Rating> ratings;
 
     @OneToMany (mappedBy = "university", cascade = CascadeType.REMOVE)
-    Set<AnnonceMobilte> anMobiltes;
+    List<AnnonceMobilte> anMobiltes;
 
     @OneToMany (mappedBy = "university")
-    Set<AnnonceHeberge> anhebergements;
+    List<AnnonceHeberge> anhebergements;
 
     @ManyToOne
     User user;

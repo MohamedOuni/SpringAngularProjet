@@ -67,6 +67,7 @@ public class User {
     @OneToOne(mappedBy = "user")
     private Quiz quiz;
 
-
+    @OneToMany(mappedBy = "user")
+    private List<Abonnement> abonnements;
 
 }

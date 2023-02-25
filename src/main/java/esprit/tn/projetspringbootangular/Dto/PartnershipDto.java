@@ -18,13 +18,13 @@ import java.util.Date;
 public class PartnershipDto {
     //Attribut Partnership
     Integer idPartnership;
-    String Representative_Name;
-    String Representative_Email;
+    String representative_Name;
+    String representative_Email;
     @Enumerated(EnumType.STRING)
     Package partnerShip_Package;
     @Enumerated(EnumType.STRING)
     Status statut;
-    Date PartnershipDate;
+    Date partnershipDate;
     Boolean archive;
 
     //Attribut University

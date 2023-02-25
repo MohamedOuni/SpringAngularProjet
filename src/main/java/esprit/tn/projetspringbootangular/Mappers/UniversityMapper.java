@@ -15,8 +15,8 @@ public class UniversityMapper {
                 .doyen(university.getDoyen())
                 .speciality(university.getSpeciality())
                 .idPartnership(university.getPartnership().getIdPartnership())
-                .Representative_Name(university.getPartnership().getRepresentative_Name())
-                .Representative_Email(university.getPartnership().getRepresentative_Email())
+                .representative_Name(university.getPartnership().getRepresentative_Name())
+                .representative_Email(university.getPartnership().getRepresentative_Email())
                 .build();
         return universityDto;
     }

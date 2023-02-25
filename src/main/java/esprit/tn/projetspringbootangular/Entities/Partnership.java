@@ -20,16 +20,18 @@ public class Partnership implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer idPartnership;
     @NonNull
-    String Representative_Name;
+    String representative_Name;
     @NonNull
-    String Representative_Email;
+    String representative_Email;
     @Enumerated(EnumType.STRING)
     Package partnerShip_Package;
     @Enumerated(EnumType.STRING)
     Status statut;
-    Date PartnershipDate;
+    Date partnershipDate;
     @NonNull
     Boolean archive;
+    @NonNull
+    float duree;
 
     @OneToOne(mappedBy = "partnership", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     University university;

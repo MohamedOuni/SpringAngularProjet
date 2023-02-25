@@ -1,14 +1,22 @@
 package esprit.tn.projetspringbootangular.Controllers;
 
+import com.itextpdf.text.DocumentException;
 import esprit.tn.projetspringbootangular.Dto.PartnershipDto;
 import esprit.tn.projetspringbootangular.Dto.UniversityDto;
 import esprit.tn.projetspringbootangular.Entities.Partnership;
+import esprit.tn.projetspringbootangular.Entities.Status;
 import esprit.tn.projetspringbootangular.Entities.University;
 import esprit.tn.projetspringbootangular.Services.IPartnershipService;
+import esprit.tn.projetspringbootangular.pdf.PDFGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -49,6 +57,44 @@ public class PartnershipController {
         return partnershipServices.addPartnershipAndAssignToUniversity(partnershipDto);
     }
 
+
+   /* @PostMapping()
+    public PartnershipDto addUPartnershipDto(PartnershipDto partnershipDto){
+        return partnershipServices.addPartnershipDto(partnershipDto);
+    }*/
+
+    @GetMapping()
+    public List<PartnershipDto> retriveAllPartnershipDto(){
+        return partnershipServices.retrieveAllPartnershipDto();
+    }
+
+   /* @GetMapping ("/allPackage/{package}")
+    List<Partnership> getPartnershipByPackage(@PathVariable  Package partnerShip_Package){
+        return partnershipServices.getByPackage(partnerShip_Package);
+    }*/
+
+    @GetMapping ("/allStatus/{statut}")
+    List<Partnership> getPartnershipByStatus(@PathVariable Status status){
+        return partnershipServices.getByStatus(status);
+    }
+
+  /*  @GetMapping("/pdf/partnerships")
+    public void generatePdf(HttpServletResponse response) throws DocumentException, IOException {
+
+        response.setContentType("application/pdf");
+        DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD:HH:MM:SS");
+        String currentDateTime = dateFormat.format(new Date());
+        String headerkey = "Content-Disposition";
+        String headervalue = "attachment; filename=pdf_" + currentDateTime + ".pdf";
+        response.setHeader(headerkey, headervalue);
+
+        List<Partnership> partnerships = partnershipServices.getAllPartnership();
+
+        PDFGenerator generator = new PDFGenerator();
+        generator.se;
+        generator.generate(response);
+
+    }*/
 
 
 }

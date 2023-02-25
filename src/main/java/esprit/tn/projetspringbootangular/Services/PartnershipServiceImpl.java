@@ -2,6 +2,7 @@ package esprit.tn.projetspringbootangular.Services;
 
 import esprit.tn.projetspringbootangular.Dto.PartnershipDto;
 import esprit.tn.projetspringbootangular.Entities.Partnership;
+import esprit.tn.projetspringbootangular.Entities.Status;
 import esprit.tn.projetspringbootangular.Entities.University;
 import esprit.tn.projetspringbootangular.Mappers.PartnershipMapper;
 import esprit.tn.projetspringbootangular.Repository.PartnershipRepository;
@@ -102,5 +103,19 @@ public class PartnershipServiceImpl implements IPartnershipService {
 
         return PartnershipMapper.mapToDto(partnershipRepository.save(partnership));
 
+    }
+
+    /*@Override
+    public List<Partnership> getByPackage(Package partnerShip_Package) {
+        List<Partnership> partnerships = new ArrayList<>();
+        partnershipRepository.findByPartnerShip_Package(partnerShip_Package).forEach(partnerships::add);
+        return partnerships;
+    }*/
+
+    @Override
+    public List<Partnership> getByStatus(Status status) {
+        List<Partnership> partnerships = new ArrayList<>();
+        partnershipRepository.findByStatut(status).forEach(partnerships::add);
+        return partnerships;
     }
 }

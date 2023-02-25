@@ -3,6 +3,7 @@ package esprit.tn.projetspringbootangular.Services;
 import esprit.tn.projetspringbootangular.Dto.PartnershipDto;
 import esprit.tn.projetspringbootangular.Dto.UniversityDto;
 import esprit.tn.projetspringbootangular.Entities.Partnership;
+import esprit.tn.projetspringbootangular.Entities.Status;
 
 import java.util.List;
 
@@ -21,4 +22,8 @@ public interface IPartnershipService {
     List<PartnershipDto> retrieveAllPartnershipDto();
 
     PartnershipDto addPartnershipAndAssignToUniversity(PartnershipDto partnershipDto);
+
+  //  List<Partnership> getByPackage(Package partnerShip_Package);
+
+    List<Partnership> getByStatus(Status status);
 }

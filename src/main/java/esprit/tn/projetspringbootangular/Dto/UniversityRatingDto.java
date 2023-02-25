@@ -13,8 +13,9 @@ import javax.persistence.Enumerated;
 @AllArgsConstructor
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UniversityDto {
-    //Attribut University
+public class UniversityRatingDto {
+
+    //University Attributes
     Integer idUniversity;
     String name;
     String email;
@@ -23,10 +24,10 @@ public class UniversityDto {
     String doyen;
     @Enumerated(EnumType.STRING)
     Specialities speciality;
-    String logo;
 
-    //Attribut Partnership
-    Integer idPartnership;
-    String representative_Name;
-    String representative_Email;
+    //Rating Attributes
+
+    Integer idRating;
+
+    int nb_stars;
 }

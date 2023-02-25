@@ -31,6 +31,8 @@ public class University implements Serializable {
     String doyen;
     @Enumerated(EnumType.STRING)
     Specialities speciality;
+    @NonNull
+    String logo;
 
     @OneToOne
     Partnership partnership;

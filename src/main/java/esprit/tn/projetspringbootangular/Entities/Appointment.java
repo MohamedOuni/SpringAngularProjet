@@ -1,5 +1,6 @@
 package esprit.tn.projetspringbootangular.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -24,6 +25,10 @@ public class Appointment {
     Date date;
     @Enumerated(EnumType.STRING)
     AppointmentStatus status;
-    @ManyToOne()
-    User user;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    User student;
+
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    User universityOfficer;
 }

@@ -1,5 +1,6 @@
 package esprit.tn.projetspringbootangular.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -48,11 +49,13 @@ public class User {
             inverseJoinColumns = @JoinColumn(name="id_role"))
     private Set<Role> roles = new HashSet<>();
 
-    @OneToMany(mappedBy = "user")
-    Set<Availablity> availablities ;
-    @OneToMany(mappedBy = "user")
-    Set<Appointment> appointments;
-    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    @OneToMany(mappedBy = "student" , cascade = CascadeType.PERSIST)
+    Set<Appointment>  appointments;
+
+    @OneToMany(mappedBy = "universityOfficer",cascade = CascadeType.PERSIST)
+    Set<Appointment> appointmentsU;
+    @OneToMany(mappedBy = "user",cascade = CascadeType.PERSIST)
     Set<Complaint> complaints;
     @OneToMany(mappedBy = "user")
     List<AnnonceHeberge> annonceHeberges;

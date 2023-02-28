@@ -15,15 +15,13 @@ import java.util.Date;
 @Entity
 public class Complaint
 {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int idComplaint;
     String title;
     @Enumerated(EnumType.STRING)
     Categorie categorie;
-    @Temporal(TemporalType.DATE)
-    Date date;
+    Date created_at;
     String description;
     @Enumerated(EnumType.STRING)
     ComplaintStatus status;

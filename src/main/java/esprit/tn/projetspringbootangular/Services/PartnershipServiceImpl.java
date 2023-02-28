@@ -118,4 +118,14 @@ public class PartnershipServiceImpl implements IPartnershipService {
         partnershipRepository.findByStatut(status).forEach(partnerships::add);
         return partnerships;
     }
+
+    @Override
+    public Partnership assignPartnershipToUniversity(Integer idPartnership, Integer idUniversity) {
+        Partnership partnership= partnershipRepository.findById(idPartnership).orElse(null);
+        University university=universityRepository.findById(idUniversity).orElse(null);
+        
+        partnership.setUniversity(university);
+        return partnershipRepository.save(partnership);
+    }
+
 }

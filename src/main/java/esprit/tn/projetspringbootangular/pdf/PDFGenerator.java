@@ -7,11 +7,12 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import esprit.tn.projetspringbootangular.Entities.Partnership;
+import lombok.Setter;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-
+@Setter
 public class PDFGenerator {
 
     // List to hold all Students

@@ -52,18 +52,19 @@ public class PartnershipController {
         return partnershipServices.getAllPartnership();
     }
 
-    @PostMapping()
+  /* @PostMapping("/addAndAssignPartnershipToUniversity")
     public PartnershipDto addPartnershipAndAssignToUniversity(PartnershipDto partnershipDto){
         return partnershipServices.addPartnershipAndAssignToUniversity(partnershipDto);
-    }
-
-
-   /* @PostMapping()
-    public PartnershipDto addUPartnershipDto(PartnershipDto partnershipDto){
-        return partnershipServices.addPartnershipDto(partnershipDto);
     }*/
 
-    @GetMapping()
+
+
+    @PostMapping("/addPartnerDto")
+    public PartnershipDto addUPartnershipDto(PartnershipDto partnershipDto){
+        return partnershipServices.addPartnershipDto(partnershipDto);
+    }
+
+    @GetMapping("/getPartnershipDto")
     public List<PartnershipDto> retriveAllPartnershipDto(){
         return partnershipServices.retrieveAllPartnershipDto();
     }
@@ -78,7 +79,7 @@ public class PartnershipController {
         return partnershipServices.getByStatus(status);
     }
 
-  /*  @GetMapping("/pdf/partnerships")
+   @GetMapping("/pdf/partnerships")
     public void generatePdf(HttpServletResponse response) throws DocumentException, IOException {
 
         response.setContentType("application/pdf");
@@ -91,10 +92,16 @@ public class PartnershipController {
         List<Partnership> partnerships = partnershipServices.getAllPartnership();
 
         PDFGenerator generator = new PDFGenerator();
-        generator.se;
+        generator.setPartnerships(partnerships);
         generator.generate(response);
 
-    }*/
+    }
+
+    @PutMapping("affecterUniversity/{idPartnership}/{idUniversity}")
+    Partnership affecterUniversity(@PathVariable("idPartnership")Integer idPartnership,@PathVariable("idUniversity") Integer idUniversity)
+    {
+        return partnershipServices.assignPartnershipToUniversity(idUniversity, idUniversity);
+    }
 
 
 }

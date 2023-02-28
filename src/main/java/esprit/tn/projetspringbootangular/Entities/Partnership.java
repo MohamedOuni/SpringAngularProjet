@@ -33,6 +33,6 @@ public class Partnership implements Serializable {
     @NonNull
     float duree;
 
-    @OneToOne(mappedBy = "partnership", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToOne()
     University university;
 }

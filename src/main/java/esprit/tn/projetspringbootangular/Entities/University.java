@@ -34,7 +34,7 @@ public class University implements Serializable {
     @NonNull
     String logo;
 
-    @OneToOne
+    @OneToOne(mappedBy = "university", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     Partnership partnership;
 
     @OneToMany (mappedBy = "university")

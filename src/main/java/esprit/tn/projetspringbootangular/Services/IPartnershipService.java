@@ -26,4 +26,6 @@ public interface IPartnershipService {
   //  List<Partnership> getByPackage(Package partnerShip_Package);
 
     List<Partnership> getByStatus(Status status);
+
+    Partnership assignPartnershipToUniversity(Integer idPartnership, Integer idUniversity);
 }

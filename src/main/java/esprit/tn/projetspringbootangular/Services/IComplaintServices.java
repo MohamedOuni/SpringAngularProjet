@@ -4,6 +4,7 @@ import esprit.tn.projetspringbootangular.Entities.Categorie;
 import esprit.tn.projetspringbootangular.Entities.Complaint;
 import esprit.tn.projetspringbootangular.Entities.ComplaintStatus;
 import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public interface IComplaintServices {
 
     void removeComplaint(Integer idComplaint);
 
-    Complaint assignCompToStudent(Integer idComplaint,Integer idUser);
+    //Complaint assignCompToStudent(Integer idComplaint,Integer idUser);
 
     List<Complaint> findByCategorie(Categorie categorie);
 
@@ -28,10 +29,7 @@ public interface IComplaintServices {
 
     Page<Complaint> findwithPagination(int offset, int pagesize);
 
-    List<Complaint>  findByUser_Prenom(String prenom);
-
-    //List<Complaint> OrderByCreated_atAsc();
-    //List<Complaint> OrderByCreated_atDesc();
+    List<Complaint>  findByUser_Username(String username);
 
     void  retrieveComplaintsINPROGRESS();
 }

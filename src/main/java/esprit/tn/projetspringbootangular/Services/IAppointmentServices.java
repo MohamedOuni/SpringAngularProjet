@@ -21,4 +21,5 @@ public interface IAppointmentServices {
     Appointment assignAppointmentToUniversityOfficer(Integer idAppointment, Integer idUniversityOfficer);
 
     List<User> getAvailableUniversityOfficersbydate(Date date);
+
 }

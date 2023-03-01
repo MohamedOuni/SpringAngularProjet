@@ -15,10 +15,13 @@ import java.util.List;
 public class AppointmentRestController {
     private  final IAppointmentServices iAppointmentServices;
 
+
     @PutMapping("/add&AssignToStudent")
     Appointment addAppointmentAndAssignToStudent(@RequestBody Appointment appointment){
         return iAppointmentServices.addAppointmentAndAssignToStudent(appointment);
     }
+
+
 
     @PutMapping("/update")
     Appointment updateAppointment(@RequestBody Appointment appointment){
@@ -55,5 +58,8 @@ public class AppointmentRestController {
     List<User> getAvailableUniversityOfficersbydate(@PathVariable("dateA") Date date){
         return iAppointmentServices.getAvailableUniversityOfficersbydate(date);
     }
+
+
+
 
 }

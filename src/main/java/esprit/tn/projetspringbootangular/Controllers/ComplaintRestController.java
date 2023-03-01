@@ -18,7 +18,7 @@ public class ComplaintRestController {
     private  final IComplaintServices iComplaintServices;
 
 
-    @PostMapping("/add")
+    @PutMapping("/add")
     Complaint addComplaint(@RequestBody Complaint  complaint){
         complaint.setDescription(BadWordFilter.getCensoredText(complaint.getDescription()));
         return iComplaintServices.addComplaint(complaint);
@@ -47,12 +47,13 @@ public class ComplaintRestController {
         iComplaintServices.removeComplaint(idComplaint);
     }
 
-
+    /*
     @PutMapping("/assignComplaintToStudent/{ComplaintId}/{StudentId}")
     @ResponseBody
     public void assignComplaintToStudent(@PathVariable("ComplaintId") Integer idC, @PathVariable("StudentId") Integer idS) {
         iComplaintServices.assignCompToStudent(idC,idS);
     }
+     */
 
 
     @GetMapping("/complaintByCategorie/{c}")
@@ -73,19 +74,11 @@ public class ComplaintRestController {
 
     }
 
-
-    @GetMapping("/complaintByStudentPrenom/{name}")
-    @ResponseBody
-    public List<Complaint> findByStudentPrenom(@PathVariable ("name")String name){
-        return iComplaintServices.findByUser_Prenom(name);
+    @GetMapping("/complaintByUsername/{name}")
+    public List<Complaint> findByUsername(@PathVariable("name") String name) {
+        return iComplaintServices.findByUser_Username(name);
     }
 
 
-    /*
-    @GetMapping("/orderBydateAsc")
-    List<Complaint> orderBydateAsc(){
-        return  iComplaintServices.OrderByCreated_atAsc();
-    }
-    */
 
 }

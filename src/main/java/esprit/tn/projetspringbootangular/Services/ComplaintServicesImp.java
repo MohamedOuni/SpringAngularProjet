@@ -30,6 +30,8 @@ public class ComplaintServicesImp implements IComplaintServices {
 
     @Override
     public Complaint addComplaint(Complaint c) {
+        User user = userRepository.findById(c.getUser().getId_user()).orElse(null);
+        c.setUser(user);
         c.setCreated_at(new Date());
         c.setStatus(ComplaintStatus.INPROGRESS);
         return complaintRepository.save(c);
@@ -50,6 +52,7 @@ public class ComplaintServicesImp implements IComplaintServices {
       complaintRepository.deleteById(idComplaint);
     }
 
+    /*
     @Override
     public Complaint assignCompToStudent(Integer idComplaint, Integer idUser) {
         Complaint c = complaintRepository.findById(idComplaint).orElse(null);
@@ -57,6 +60,8 @@ public class ComplaintServicesImp implements IComplaintServices {
         c.setUser(u);
         return complaintRepository.save(c);
     }
+    */
+
 
     @Override
     public List<Complaint> findByCategorie(Categorie categorie) {
@@ -75,9 +80,11 @@ public class ComplaintServicesImp implements IComplaintServices {
     }
 
     @Override
-    public List<Complaint> findByUser_Prenom(String prenom) {
-        return complaintRepository.findByUser_Prenom(prenom);
+    public List<Complaint> findByUser_Username(String username) {
+        return  complaintRepository.findByUser_Username(username);
     }
+
+
 
     @Scheduled(cron = "0 0 8 * * MON,WED")
     @Override

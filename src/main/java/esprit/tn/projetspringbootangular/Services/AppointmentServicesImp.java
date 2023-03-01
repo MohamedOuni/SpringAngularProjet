@@ -30,11 +30,12 @@ public class AppointmentServicesImp  implements  IAppointmentServices{
         return appointmentRepository.findAll();
     }
 
+
     @Override
     public Appointment addAppointmentAndAssignToStudent(Appointment a) {
         User student = userRepository.findById(a.getStudent().getId_user()).orElse(null);
-        a.setStatus(AppointmentStatus.PENDING);
         a.setStudent(student);
+        a.setStatus(AppointmentStatus.PENDING);
         return appointmentRepository.save(a);
     }
 
@@ -89,5 +90,7 @@ public class AppointmentServicesImp  implements  IAppointmentServices{
         UniversityOfficers.removeAll(notAvailableOfficers);
         return UniversityOfficers;
     }
+
+
 }
 

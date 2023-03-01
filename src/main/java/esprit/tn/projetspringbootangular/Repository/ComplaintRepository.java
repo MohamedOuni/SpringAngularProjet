@@ -4,6 +4,8 @@ import esprit.tn.projetspringbootangular.Entities.Categorie;
 import esprit.tn.projetspringbootangular.Entities.Complaint;
 import esprit.tn.projetspringbootangular.Entities.ComplaintStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -13,9 +15,13 @@ public interface ComplaintRepository extends JpaRepository<Complaint,Integer> {
 
     List<Complaint>  findByStatus(ComplaintStatus status);
 
-    List<Complaint>  findByUser_Prenom(String prenom);
+    List<Complaint>  findByUser_Username(String username);
 
-    //List<Complaint> OrderByCreated_atAsc();
 
-    //List<Complaint> OrderByCreated_atDesc();
+
+
+
+
+
+
 }

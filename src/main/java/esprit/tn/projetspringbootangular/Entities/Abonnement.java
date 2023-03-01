@@ -30,7 +30,7 @@ public class Abonnement implements Serializable {
     @ManyToOne
     private User user;
 
+    @ManyToOne
+    private AnnonceMobilte annonceMobilte;
 
-    @OneToMany(mappedBy = "annonce")
-    private List<Abonnement> abonnements;
 }

@@ -1,16 +1,16 @@
 package esprit.tn.projetspringbootangular.Services;
 
-import esprit.tn.projetspringbootangular.Entities.Abonnement;
-import esprit.tn.projetspringbootangular.Entities.AnnonceHeberge;
-import esprit.tn.projetspringbootangular.Entities.AnnonceMobilte;
-import esprit.tn.projetspringbootangular.Entities.CategorieMobilite;
+import esprit.tn.projetspringbootangular.Entities.*;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 public interface IserviceAnnonce {
-    AnnonceMobilte ajouterAnnonce(AnnonceMobilte annonce);
+
+
+    void ajouterAnnonce(AnnonceMobilte annonce);
 
     List<AnnonceMobilte> afficherAnnonces();
 
@@ -42,7 +42,7 @@ public interface IserviceAnnonce {
 
     void afficherAnnonceParTitre(String titre);
 
-    void afficherAnnonceParLieu(String lieu);
+    List<AnnonceMobilte> afficherAnnonceParLieu(String lieu);
 
     List<AnnonceMobilte> findByCategorie(CategorieMobilite categorie);
 
@@ -57,12 +57,11 @@ public interface IserviceAnnonce {
 
     void affecterAnnonceMobiliteAUniversity(Integer id_Annonce, Integer idUniversity);
 
-    AnnonceMobilte ajouterAnnonceMobilteEtAffecterToUniversity(AnnonceMobilte annonceMobilte, Integer idUniversity);
 
-    List<AnnonceMobilte> AfficherListeAnnonceParUniversite(Integer idUniversity);
 
-    //ajouter une unviersité  et affecter a 2 equipe les 2 id doivent etre different
-    void ajouterDeuxAnnonceEtAffecterAUniversity(Integer idUniversity, AnnonceMobilte annonceMobilte, AnnonceHeberge annonceHeberge);
+
+
+
 
     Abonnement createAbonnement(Abonnement abonnement);
 
@@ -72,10 +71,47 @@ public interface IserviceAnnonce {
 
     void deletAbonnement(Integer idAbonnement);
 
-    List<Abonnement> getAbonnementsActifs(CategorieMobilite categorie);
+    void affecterAnnonceToAbonnement(Integer id_Annonce, Integer idAbonnement);
 
 
-    String envoyerEmailPourNouvelleAnnonce(CategorieMobilite categorie, String sujet, String message);
 
-    String sendSimpleMail(String recipient, String subject, String message);
+
+
+
+
+
+
+
+    void affecterUserToAbonnement(Integer id_user, Integer idAbonnement);
+
+    List<Abonnement> AFFICHERAbonnementsActifs(CategorieMobilite categorie);
+
+    FavorisMobile ajouterFavoris(FavorisMobile favorisMobile);
+
+
+
+    List<FavorisMobile> getFavorisMobiles();
+
+   /* List<FavorisMobile> findFavorisMobileByUser(User user);*/
+
+    void ajouterAnnonceAuxFavoris(Integer annonceId, Integer id_user);
+
+    Map<String, Map<String, Integer>> getAnnoncesStatistiques(LocalDate dateDebut, LocalDate dateFin);
+
+
+
+
+
+
+    List<Candidacy> getCandidaciesByAnnonceId(Integer id_Annonce);
+
+    void affecterCondidatureToAnnonce(Integer id, Integer id_Annonce);
+
+    double calculateDistance(double lat1, double lon1, double lat2, double lon2);
+
+
+
+    double calculateScore(Integer id_Annonce);
+
+    void notifierAbonnes(CategorieMobilite categorie, String message);
 }

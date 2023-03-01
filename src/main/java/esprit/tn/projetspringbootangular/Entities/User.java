@@ -70,4 +70,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Abonnement> abonnements;
 
+    @OneToMany(mappedBy = "user")
+    private List<FavorisMobile> favorisMobiles;
+    @OneToMany(mappedBy = "user")
+    private List<FavorisHebergement> favorisHebergements;
+
 }

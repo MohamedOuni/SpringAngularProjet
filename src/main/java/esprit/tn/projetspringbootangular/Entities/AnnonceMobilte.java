@@ -7,6 +7,7 @@ import lombok.experimental.FieldDefaults;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class AnnonceMobilte implements Serializable {
     private String titre;
     private String description_mobilite ;
     private Integer NombreDePlace;
+
     private LocalDate  datePublicationn ;
     private String photo ;
     @Temporal(TemporalType.DATE)
@@ -45,6 +47,19 @@ public class AnnonceMobilte implements Serializable {
     @ManyToOne (cascade = {CascadeType.PERSIST,CascadeType.REMOVE })
     private  University university;
 
-    @OneToMany(mappedBy = "annonce")
+    @OneToMany(mappedBy = "annonceMobilte")
     private List<Abonnement> abonnements;
+
+    @OneToMany(mappedBy = "annonceMobilte",cascade = {CascadeType.PERSIST,CascadeType.REMOVE })
+
+
+    private List<Candidacy> candidacies ;
+
+
+
+
+
+
+
+
 }

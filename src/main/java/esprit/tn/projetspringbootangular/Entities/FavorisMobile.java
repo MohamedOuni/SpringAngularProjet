@@ -22,5 +22,9 @@ public class FavorisMobile implements Serializable {
 
     @ManyToMany(mappedBy ="favorisMobiles",cascade = {CascadeType.PERSIST,CascadeType.REMOVE })
     @JsonIgnore
-    private List<AnnonceMobilte> annonceMobiltes;
+    private List<AnnonceMobilte> annonceMobiltes ;
+    @ManyToOne
+    User user;
+
+
 }

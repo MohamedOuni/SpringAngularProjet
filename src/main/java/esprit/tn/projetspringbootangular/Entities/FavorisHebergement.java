@@ -22,5 +22,6 @@ public class FavorisHebergement implements Serializable {
     @ManyToMany(mappedBy ="favorisHebergements",cascade = {CascadeType.PERSIST,CascadeType.REMOVE })
     @JsonIgnore
     private List<AnnonceHeberge> annonceHeberges;
-
+    @ManyToOne
+    User user;
 }

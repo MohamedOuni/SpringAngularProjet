@@ -1,11 +1,14 @@
 package esprit.tn.projetspringbootangular.Services;
 
+import esprit.tn.projetspringbootangular.Entities.EmailDetails;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+
+import javax.security.auth.Subject;
 
 @Slf4j
 @Service
@@ -17,44 +20,20 @@ public class EmailServiceImpl implements  EmailService {
     private final JavaMailSender javaMailSender;
 
 
-    /*@Override*/
-    /*public String sendSimpleMail(EmailDetailAnnonce details) {
-        try {
 
-            // Creating a simple mail message
-            SimpleMailMessage mailMessage
-                    = new SimpleMailMessage();
 
-            // Setting up necessary details
-            mailMessage.setFrom("nouhe.kouki.1999@gmail.com");
-            mailMessage.setTo(details.getRecipient());
-            mailMessage.setText(details.getMsgBody());
-            mailMessage.setSubject(details.getSubject());
+    public void sendSimpleEmail(String toEmail,
+                                String body,
+                                String Subject){
+        SimpleMailMessage message = new SimpleMailMessage();
 
-            // Sending the mail
-            javaMailSender.send(mailMessage);
-            return "Mail Sent Successfully...";
-        } catch (Exception e) {
-            return "Error while Sending Mail";
-        }
+        message.setFrom("nouhe.kouki.1999@gmail.com");
+        message.setTo(toEmail);
+        message.setText(body);
+        message.setSubject(Subject);
 
-    }*/
-
-    @Override
-    public String sendSimpleMail(     String email, String subject, String message) {
-        try {
-            SimpleMailMessage mailMessage = new SimpleMailMessage();
-            mailMessage.setFrom("nouhe.kouki.1999@gmail.com");
-            mailMessage.setTo(email);
-            mailMessage.setSubject(subject);
-            mailMessage.setText(message);
-            javaMailSender.send(mailMessage);
-            return "Email envoyé avec succès!";
-        } catch (Exception ex) {
-            return "Erreur lors de l'envoi de l'e-mail: " + ex.getMessage();
-        }
-    }
-    }
-
+        javaMailSender.send(message);
+        System.out.println("Mail Send...");
+    }}
 
 

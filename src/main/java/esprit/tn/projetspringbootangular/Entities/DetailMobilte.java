@@ -20,20 +20,18 @@ public class DetailMobilte implements Serializable {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id_det;
     private Double  longitude ;
-    private String delegation ;
     private Double latitude ;
     private String avantages ;
     private String  plus_details ;
-    private String qualification ;
+    private String qualification_demande ;
     private String  langue ;
-    private String universite_descrption;
     private String lieuDepart;
     private String lieuArrivee;
     @Temporal(TemporalType.DATE)
     private Date dateDepart;
     @Temporal(TemporalType.DATE)
     private Date dateArrive;
-    private String contact ;
+    private Integer contact ;
 
 
     @OneToOne(mappedBy="details",cascade = {CascadeType.PERSIST,CascadeType.REMOVE })

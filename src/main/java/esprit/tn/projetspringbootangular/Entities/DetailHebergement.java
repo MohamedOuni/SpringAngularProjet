@@ -19,7 +19,6 @@ public class DetailHebergement implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id_detail;
     private String Region;
-    private String delegation;
     private String localite;
     private String avantages;
     private Double latitude;

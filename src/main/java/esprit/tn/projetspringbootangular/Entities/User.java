@@ -55,6 +55,8 @@ public class User {
 
     @OneToMany(mappedBy = "universityOfficer",cascade = CascadeType.PERSIST)
     Set<Appointment> appointmentsU;
+
+    @JsonIgnore
     @OneToMany(mappedBy = "user",cascade = CascadeType.PERSIST)
     Set<Complaint> complaints;
     @OneToMany(mappedBy = "user")

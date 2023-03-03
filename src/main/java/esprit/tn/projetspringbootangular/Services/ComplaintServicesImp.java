@@ -23,17 +23,20 @@ public class ComplaintServicesImp implements IComplaintServices {
     private final ComplaintRepository complaintRepository;
     private final UserRepository userRepository;
 
+    private final  IEmailService iemailService;
+
     @Override
     public List<Complaint> retrieveAllComplaints() {
         return complaintRepository.findAll();
     }
 
     @Override
-    public Complaint addComplaint(Complaint c) {
+    public Complaint addComplaintAndAssignToUser(Complaint c) {
         User user = userRepository.findById(c.getUser().getId_user()).orElse(null);
         c.setUser(user);
         c.setCreated_at(new Date());
         c.setStatus(ComplaintStatus.INPROGRESS);
+        iemailService.sendSimpleMail(c.getUser().getEmail(), "Complaint", "Complaint!");
         return complaintRepository.save(c);
     }
 
@@ -51,17 +54,6 @@ public class ComplaintServicesImp implements IComplaintServices {
     public void removeComplaint(Integer idComplaint) {
       complaintRepository.deleteById(idComplaint);
     }
-
-    /*
-    @Override
-    public Complaint assignCompToStudent(Integer idComplaint, Integer idUser) {
-        Complaint c = complaintRepository.findById(idComplaint).orElse(null);
-        User u = userRepository.findById(idUser).orElse(null);
-        c.setUser(u);
-        return complaintRepository.save(c);
-    }
-    */
-
 
     @Override
     public List<Complaint> findByCategorie(Categorie categorie) {
@@ -84,8 +76,6 @@ public class ComplaintServicesImp implements IComplaintServices {
         return  complaintRepository.findByUser_Username(username);
     }
 
-
-
     @Scheduled(cron = "0 0 8 * * MON,WED")
     @Override
     public void retrieveComplaintsINPROGRESS() {
@@ -93,7 +83,7 @@ public class ComplaintServicesImp implements IComplaintServices {
         for(Complaint c : complaints){
             if (c.getCreated_at().before(new Date())) {
                 log.info("List of pending claims: " + c.getTitle() +
-                        " : Student : " + c.getUser().getPrenom() +
+                        " : Student : " + c.getUser().getUsername() +
                         " : Created-At : " + c.getCreated_at());
             }
         }

@@ -24,6 +24,7 @@ public class Complaint
     String title;
     @Enumerated(EnumType.STRING)
     Categorie categorie;
+    @Temporal(TemporalType.DATE)
     Date created_at;
     @Size(min= 10,message="Description must contain at least 10 characters")
     @Size(max= 100,message="Description must contain a maximum of 100 characters")

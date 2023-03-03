@@ -1,10 +1,7 @@
 package esprit.tn.projetspringbootangular.Services;
 
 
-import esprit.tn.projetspringbootangular.Entities.Appointment;
-import esprit.tn.projetspringbootangular.Entities.AppointmentStatus;
-import esprit.tn.projetspringbootangular.Entities.EnumRole;
-import esprit.tn.projetspringbootangular.Entities.User;
+import esprit.tn.projetspringbootangular.Entities.*;
 import esprit.tn.projetspringbootangular.Repository.AppointmentRepository;
 import esprit.tn.projetspringbootangular.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,10 +22,9 @@ public class AppointmentServicesImp  implements  IAppointmentServices{
     private  final AppointmentRepository appointmentRepository;
 
     private  final UserRepository userRepository;
-    @Override
-    public List<Appointment> retrieveAllAppointments() {
-        return appointmentRepository.findAll();
-    }
+
+    private final  IEmailService iemailService;
+
 
 
     @Override
@@ -36,17 +32,23 @@ public class AppointmentServicesImp  implements  IAppointmentServices{
         User student = userRepository.findById(a.getStudent().getId_user()).orElse(null);
         a.setStudent(student);
         a.setStatus(AppointmentStatus.PENDING);
+        iemailService.sendSimpleMail(a.getStudent().getEmail(), "Appointment", " Appointment !");
         return appointmentRepository.save(a);
     }
 
     @Override
-    public Appointment updateAppointment(Appointment a) {
-        return appointmentRepository.save(a);
+    public List<Appointment> retrieveAllAppointments() {
+        return appointmentRepository.findAll();
     }
 
     @Override
     public Appointment retrieveAppointment(Integer idAppointment) {
         return appointmentRepository.findById(idAppointment).orElse(null);
+    }
+
+    @Override
+    public Appointment updateAppointment(Appointment a) {
+        return appointmentRepository.save(a);
     }
 
     @Override
@@ -64,7 +66,7 @@ public class AppointmentServicesImp  implements  IAppointmentServices{
 
     @Override
     public List<User> getAvailableUniversityOfficersbydate(Date date) {
-        Date dateAppointment =new Date();
+        Date dateAppointment =date;  //  Date dateAppointment =new Date();
 
         try {
             dateAppointment = new SimpleDateFormat("yyyy-MM-dd").parse(String.valueOf(date));
@@ -78,17 +80,16 @@ public class AppointmentServicesImp  implements  IAppointmentServices{
         // Récupération de la liste de tous les rendez-vous
         List<Appointment> appointments = appointmentRepository.findAll();
 
-
-
         List<User> notAvailableOfficers=new ArrayList<User>();
         for(Appointment a : appointments){
-            if(a.getDate().getDay()==dateAppointment.getDay() && a.getDate().getMonth()==dateAppointment.getMonth() && a.getDate().getYear()==dateAppointment.getYear())
+            if(a.getDate().compareTo(dateAppointment) ==0 )
             {
                 notAvailableOfficers.add(a.getUniversityOfficer());
             }
         }
-        UniversityOfficers.removeAll(notAvailableOfficers);
-        return UniversityOfficers;
+       UniversityOfficers.removeAll(notAvailableOfficers);
+
+                return UniversityOfficers;
     }
 
 

@@ -10,4 +10,6 @@ public interface AppointmentRepository extends JpaRepository<Appointment,Integer
 
 
     List<Appointment> findByStudent_Username(String username);
+
+
 }

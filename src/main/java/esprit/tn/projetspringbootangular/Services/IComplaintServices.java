@@ -11,17 +11,13 @@ import java.util.List;
 public interface IComplaintServices {
     List<Complaint> retrieveAllComplaints();
 
-    Complaint  addComplaint(Complaint c);
-
+    Complaint  addComplaintAndAssignToUser(Complaint c);
 
     Complaint retrieveComplaint(Integer idComplaint);
 
     Complaint  UpdateComplaint(Complaint c);
 
-
     void removeComplaint(Integer idComplaint);
-
-    //Complaint assignCompToStudent(Integer idComplaint,Integer idUser);
 
     List<Complaint> findByCategorie(Categorie categorie);
 

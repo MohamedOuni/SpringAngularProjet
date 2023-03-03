@@ -1,8 +1,10 @@
 package esprit.tn.projetspringbootangular.Controllers;
 
 import esprit.tn.projetspringbootangular.Entities.Appointment;
+import esprit.tn.projetspringbootangular.Entities.Complaint;
 import esprit.tn.projetspringbootangular.Entities.User;
 import esprit.tn.projetspringbootangular.Services.IAppointmentServices;
+import esprit.tn.projetspringbootangular.utils.BadWordFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +22,6 @@ public class AppointmentRestController {
     Appointment addAppointmentAndAssignToStudent(@RequestBody Appointment appointment){
         return iAppointmentServices.addAppointmentAndAssignToStudent(appointment);
     }
-
 
 
     @PutMapping("/update")

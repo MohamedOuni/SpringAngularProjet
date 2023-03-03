@@ -18,10 +18,10 @@ public class ComplaintRestController {
     private  final IComplaintServices iComplaintServices;
 
 
-    @PutMapping("/add")
-    Complaint addComplaint(@RequestBody Complaint  complaint){
+    @PutMapping("/addComplaintAndAssignToUser")
+    Complaint addComplaintAndAssignToUser(@RequestBody Complaint  complaint){
         complaint.setDescription(BadWordFilter.getCensoredText(complaint.getDescription()));
-        return iComplaintServices.addComplaint(complaint);
+        return iComplaintServices.addComplaintAndAssignToUser(complaint);
     }
 
     @PutMapping("/update")
@@ -47,14 +47,6 @@ public class ComplaintRestController {
         iComplaintServices.removeComplaint(idComplaint);
     }
 
-    /*
-    @PutMapping("/assignComplaintToStudent/{ComplaintId}/{StudentId}")
-    @ResponseBody
-    public void assignComplaintToStudent(@PathVariable("ComplaintId") Integer idC, @PathVariable("StudentId") Integer idS) {
-        iComplaintServices.assignCompToStudent(idC,idS);
-    }
-     */
-
 
     @GetMapping("/complaintByCategorie/{c}")
     public List<Complaint> findByCategorie(@PathVariable("c") Categorie categorie) {
@@ -68,7 +60,7 @@ public class ComplaintRestController {
     }
 
 
-    @GetMapping("/find-Complaintwithpagination/{offset}/{pagesize}")
+    @GetMapping("/findComplaintwithpagination/{offset}/{pagesize}")
     public Page<Complaint> findComplaintwithPagination(@PathVariable ("offset")int offset, @PathVariable("pagesize")int pagesize ){
         return iComplaintServices.findwithPagination(offset, pagesize);
 

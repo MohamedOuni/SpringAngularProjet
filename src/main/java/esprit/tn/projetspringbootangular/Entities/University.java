@@ -13,13 +13,11 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@RequiredArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class University implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer idUniversity;
-    @NonNull
+    @Column(length = 45, nullable = false, unique = true)
     String name;
     @NonNull
     String email;
@@ -29,12 +27,14 @@ public class University implements Serializable {
     String ville;
     @NonNull
     String doyen;
+
     @Enumerated(EnumType.STRING)
     Specialities speciality;
-    @NonNull
-    String logo;
+    @Lob
+    @Column(length = 45, nullable = true)
+    byte[]  logo;
 
-    @OneToOne(mappedBy = "university", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToOne
     Partnership partnership;
 
     @OneToMany (mappedBy = "university")
@@ -48,4 +48,14 @@ public class University implements Serializable {
 
     @ManyToOne
     User user;
+
+    public University(String name, @NonNull String email, @NonNull String adresse, @NonNull String ville, @NonNull String doyen, byte[] logo) {
+        this.name = name;
+        this.email = email;
+        this.adresse = adresse;
+        this.ville = ville;
+        this.doyen = doyen;
+        this.logo = logo;
+    }
+
 }

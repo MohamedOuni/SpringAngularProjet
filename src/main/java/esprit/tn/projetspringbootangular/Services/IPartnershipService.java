@@ -21,7 +21,7 @@ public interface IPartnershipService {
 
     List<PartnershipDto> retrieveAllPartnershipDto();
 
-    PartnershipDto addPartnershipAndAssignToUniversity(PartnershipDto partnershipDto);
+   // PartnershipDto addPartnershipAndAssignToUniversity(PartnershipDto partnershipDto);
 
   //  List<Partnership> getByPackage(Package partnerShip_Package);
 

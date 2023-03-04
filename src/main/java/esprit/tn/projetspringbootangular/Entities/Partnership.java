@@ -13,7 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Partnership implements Serializable {
     @Id
@@ -26,13 +26,15 @@ public class Partnership implements Serializable {
     @Enumerated(EnumType.STRING)
     Package partnerShip_Package;
     @Enumerated(EnumType.STRING)
+
     Status statut;
+    @Temporal(TemporalType.DATE)
     Date partnershipDate;
     @NonNull
     Boolean archive;
     @NonNull
     float duree;
 
-    @OneToOne()
-    University university;
+    @OneToOne(mappedBy = "partnership")
+     University university;
 }

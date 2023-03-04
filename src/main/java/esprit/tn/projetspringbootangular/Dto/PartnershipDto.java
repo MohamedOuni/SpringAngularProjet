@@ -2,19 +2,20 @@ package esprit.tn.projetspringbootangular.Dto;
 
 import esprit.tn.projetspringbootangular.Entities.Package;
 import esprit.tn.projetspringbootangular.Entities.Status;
+import esprit.tn.projetspringbootangular.Entities.University;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.util.Date;
+import java.util.Set;
 
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @ToString
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class PartnershipDto {
     //Attribut Partnership
     Integer idPartnership;
@@ -28,10 +29,10 @@ public class PartnershipDto {
     Boolean archive;
 
     //Attribut University
-    Integer idUniversity;
-    String name;
-    String email;
-    String adresse;
-    String ville;
-    String doyen;
+    private  String name;
+    private String email;
+    private String adresse;
+    private String ville;
+    private String doyen;
+
 }

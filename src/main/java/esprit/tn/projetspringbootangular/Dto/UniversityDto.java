@@ -12,7 +12,6 @@ import javax.persistence.Enumerated;
 @Builder
 @AllArgsConstructor
 @ToString
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class UniversityDto {
     //Attribut University
     Integer idUniversity;

@@ -3,9 +3,11 @@ package esprit.tn.projetspringbootangular.Controllers;
 import com.itextpdf.text.DocumentException;
 import esprit.tn.projetspringbootangular.Dto.PartnershipDto;
 import esprit.tn.projetspringbootangular.Dto.UniversityDto;
+import esprit.tn.projetspringbootangular.Entities.EmailDetails;
 import esprit.tn.projetspringbootangular.Entities.Partnership;
 import esprit.tn.projetspringbootangular.Entities.Status;
 import esprit.tn.projetspringbootangular.Entities.University;
+import esprit.tn.projetspringbootangular.Services.EmailServiceImpl;
 import esprit.tn.projetspringbootangular.Services.IPartnershipService;
 import esprit.tn.projetspringbootangular.pdf.PDFGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +28,13 @@ public class PartnershipController {
     @Autowired
     private IPartnershipService partnershipServices;
 
+    @Autowired
+    private EmailServiceImpl emailService;
+
     @PostMapping("/add")
     void addPartnership(@RequestBody Partnership partnership){
         partnershipServices.addPartnership(partnership);
+       //0 emailService.sendSimpleMail();
     }
 
     @DeleteMapping("/delete/{id}")
@@ -60,7 +66,8 @@ public class PartnershipController {
 
 
     @PostMapping("/addPartnerDto")
-    public PartnershipDto addUPartnershipDto(PartnershipDto partnershipDto){
+    public PartnershipDto addUPartnershipDto(@RequestBody  PartnershipDto partnershipDto){
+
         return partnershipServices.addPartnershipDto(partnershipDto);
     }
 

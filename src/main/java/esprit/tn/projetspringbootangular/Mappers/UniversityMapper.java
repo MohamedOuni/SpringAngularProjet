@@ -6,7 +6,9 @@ import esprit.tn.projetspringbootangular.Entities.University;
 public class UniversityMapper {
     public static UniversityDto mapToDto(University university) {
         UniversityDto universityDto= UniversityDto.builder()
+/*
                 .idUniversity(university.getIdUniversity())
+*/
                 .name(university.getName())
                 .email(university.getEmail())
                 .doyen(university.getDoyen())

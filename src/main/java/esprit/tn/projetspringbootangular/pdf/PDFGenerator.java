@@ -35,7 +35,7 @@ public class PDFGenerator {
         fontTiltle.setSize(20);
 
         // Creating paragraph
-        Paragraph paragraph = new Paragraph("List Of Students", fontTiltle);
+        Paragraph paragraph = new Paragraph("List Of Representatives", fontTiltle);
 
         // Aligning the paragraph in document
         paragraph.setAlignment(Paragraph.ALIGN_CENTER);
@@ -67,9 +67,9 @@ public class PDFGenerator {
         // Adding Cell to table
         cell.setPhrase(new Phrase("ID", font));
         table.addCell(cell);
-        cell.setPhrase(new Phrase("Student Name", font));
+        cell.setPhrase(new Phrase("Representative Name", font));
         table.addCell(cell);
-        cell.setPhrase(new Phrase("Section", font));
+        cell.setPhrase(new Phrase("Representative Email", font));
         table.addCell(cell);
 
         // Iterating over the list of students
@@ -77,7 +77,7 @@ public class PDFGenerator {
             // Adding partnership id
             table.addCell(String.valueOf(partnership.getIdPartnership()));
             // Adding partnership representative name
-            table.addCell(partnership.getRepresentative_Email());
+            table.addCell(partnership.getRepresentative_Name());
             // Adding partnership representative email
             table.addCell(partnership.getRepresentative_Email());
 

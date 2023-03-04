@@ -6,6 +6,7 @@ import esprit.tn.projetspringbootangular.Entities.Status;
 import esprit.tn.projetspringbootangular.Entities.University;
 import esprit.tn.projetspringbootangular.Mappers.PartnershipMapper;
 import esprit.tn.projetspringbootangular.Repository.PartnershipRepository;
+import esprit.tn.projetspringbootangular.Repository.RatingRepository;
 import esprit.tn.projetspringbootangular.Repository.UniversityRepository;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -20,15 +21,13 @@ import java.util.stream.Collectors;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Service("partnership")
 public class PartnershipServiceImpl implements IPartnershipService {
-
-     final PartnershipRepository partnershipRepository;
-     final UniversityRepository universityRepository;
-
     @Autowired
-    public PartnershipServiceImpl(PartnershipRepository partnershipRepository, UniversityRepository universityRepository) {
-        this.partnershipRepository = partnershipRepository;
-        this.universityRepository = universityRepository;
-    }
+      PartnershipRepository partnershipRepository;
+    @Autowired
+      UniversityRepository universityRepository;
+
+     //final RatingRepository ratingRepository;
+
 
     @Override
     public void addPartnership(Partnership partnership) {
@@ -60,22 +59,41 @@ public class PartnershipServiceImpl implements IPartnershipService {
         partnershipRepository.findAll().forEach(partnerships::add);
         return partnerships;
     }
+    /*public PartnershipDto convertToDto(Partnership partnership, University university) {
+        PartnershipDto dto = new PartnershipDto();
+
+        PartnershipDto dto = new PartnershipDto();
+        dto.setRepresentative_Name(entity1.getId());
+        dto.setRepresentative_Email(entity1.getName());
+        dto.setPartnerShip_Package(entity1.getName());
+        dto.setStatut(entity1.getName());
+        dto.setPartnershipDate(entity1.getName());
+        dto.setArchive(entity1.getName());
+        dto.setName(entity2.getDescription());
+        dto.setEmail(entity1.getName());
+        dto.setAdresse(entity1.getName());
+        dto.setRepresentative_Email(entity1.getName());
+        dto.setRepresentative_Email(entity1.getName());
+        return dto;*/
 
     @Override
     public PartnershipDto addPartnershipDto(PartnershipDto partnershipDto) {
-        Partnership partnership= partnershipRepository.save(PartnershipMapper.mapToEntity(partnershipDto));
-        return PartnershipMapper.mapToDto(partnership);
+
+      //  Partnership partnership= partnershipRepository.save(PartnershipMapper.mapToEntity(partnershipDto));
+
+        return PartnershipMapper.mapToDto(partnershipRepository.save(PartnershipMapper.mapToEntity(partnershipDto)));
+
     }
 
     @Override
     public List<PartnershipDto> retrieveAllPartnershipDto() {
         return partnershipRepository.findAll()
                 .stream()
-                .map(partnership -> PartnershipMapper.mapToDto(partnership))
+                .map((Partnership partnership) -> PartnershipMapper.mapToDto(partnership))
                 .collect(Collectors.toList());
     }
 
-    @Override
+   /* @Override
     public PartnershipDto addPartnershipAndAssignToUniversity(PartnershipDto partnershipDto) {
         University university = universityRepository
                 .findFirstByNameAndEmailAndAdresseAndVilleAndDoyen(
@@ -103,7 +121,7 @@ public class PartnershipServiceImpl implements IPartnershipService {
 
         return PartnershipMapper.mapToDto(partnershipRepository.save(partnership));
 
-    }
+    }*/
 
     /*@Override
     public List<Partnership> getByPackage(Package partnerShip_Package) {

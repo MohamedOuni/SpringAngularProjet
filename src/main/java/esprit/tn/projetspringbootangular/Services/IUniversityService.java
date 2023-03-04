@@ -3,6 +3,7 @@ package esprit.tn.projetspringbootangular.Services;
 import esprit.tn.projetspringbootangular.Dto.UniversityDto;
 import esprit.tn.projetspringbootangular.Entities.Specialities;
 import esprit.tn.projetspringbootangular.Entities.University;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -29,5 +30,6 @@ public interface IUniversityService {
 
     List<University> getUniversityByVille(String ville);
 
+    University saveUniversity(MultipartFile file) throws Exception;
 
 }

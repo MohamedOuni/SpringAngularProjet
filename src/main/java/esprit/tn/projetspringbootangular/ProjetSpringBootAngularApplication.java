@@ -19,7 +19,18 @@ public class ProjetSpringBootAngularApplication {
         SpringApplication.run(ProjetSpringBootAngularApplication.class, args);
     }
 
+    @Autowired
+    private PartnershipRepository repo;
 
+    public void run(String... args) throws Exception {
+        // TODO Auto-generated method stub
+        for (int i = 0; i < 23; i++) {
+            Partnership vehicle = new Partnership();
+            vehicle.setRepresentative_Email("Swift" + i);
+            vehicle.setRepresentative_Name("M1526" + i);
+            repo.save(vehicle);
+        }
+    }
 
 
 

@@ -8,14 +8,13 @@ import esprit.tn.projetspringbootangular.Entities.University;
 public class PartnershipMapper {
     public static PartnershipDto mapToDto(Partnership partnership) {
         PartnershipDto partnershipDto = PartnershipDto.builder()
-                .idPartnership(partnership.getIdPartnership())
                 .representative_Name(partnership.getRepresentative_Name())
                 .representative_Email(partnership.getRepresentative_Email())
                 .partnerShip_Package(partnership.getPartnerShip_Package())
                 .statut(partnership.getStatut())
                 .partnershipDate(partnership.getPartnershipDate())
                 .archive(partnership.getArchive())
-                .idUniversity(partnership.getUniversity().getIdUniversity())
+
                 .name(partnership.getUniversity().getName())
                 .email(partnership.getUniversity().getEmail())
                 .doyen(partnership.getUniversity().getDoyen())

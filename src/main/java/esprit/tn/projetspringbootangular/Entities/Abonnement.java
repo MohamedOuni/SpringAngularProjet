@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.io.Serializable;
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class Abonnement implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idAbonnement;
+    @Email(message = "L'adresse e-mail n'est pas valide.")
     private String email;
     @Enumerated(EnumType.STRING)
     private CategorieMobilite categorie;

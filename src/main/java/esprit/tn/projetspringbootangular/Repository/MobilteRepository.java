@@ -12,6 +12,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 public interface MobilteRepository extends JpaRepository<AnnonceMobilte, Integer> {

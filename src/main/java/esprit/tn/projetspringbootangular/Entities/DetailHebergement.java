@@ -25,11 +25,9 @@ public class DetailHebergement implements Serializable {
     private Double longtitude;
     private String avis_aide;
     private String contact;
-
-
-
     @OneToOne(mappedBy="detailHeberge",cascade = {CascadeType.PERSIST,CascadeType.REMOVE })
     @JsonIgnore
     private AnnonceHeberge annonceHeberge;
+
 
 }

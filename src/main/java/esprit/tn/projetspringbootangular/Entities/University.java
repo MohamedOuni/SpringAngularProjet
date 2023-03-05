@@ -18,7 +18,7 @@ import java.util.Set;
 public class University implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer idUniversity;
+    Long idUniversity;
     @NonNull
     String name;
     @NonNull
@@ -38,8 +38,6 @@ public class University implements Serializable {
     @OneToMany (mappedBy = "university")
     Set<Rating> ratings;
 
-    @OneToMany (mappedBy = "university", cascade = CascadeType.REMOVE)
-    List<AnnonceMobilte> anMobiltes;
 
     @OneToMany (mappedBy = "university")
     List<AnnonceHeberge> anhebergements;

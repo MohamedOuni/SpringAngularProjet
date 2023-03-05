@@ -4,5 +4,5 @@ import esprit.tn.projetspringbootangular.Entities.AnnonceMobilte;
 import esprit.tn.projetspringbootangular.Entities.University;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UniversityRepository extends JpaRepository<University, Integer>  {
+public interface UniversityRepository extends JpaRepository<University, Long>  {
 }

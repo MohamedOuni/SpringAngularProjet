@@ -1,5 +1,6 @@
 package esprit.tn.projetspringbootangular.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -14,48 +15,41 @@ import java.util.*;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class User {
+    /**
+     *
+     */
+    static final long serialVersionUID = 1L;
+
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    int id_user;
-    @Column(nullable = false)
-    String nom ;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id_user;
 
+    String nom;
 
-    @Column(nullable = false)
-    String prenom ;
+    String prenom;
 
-    @Column(nullable = false,unique = true)
+    @Column
     String username;
 
-    @Column(nullable = false,unique = true)
-    String email ;
-
-    @Column(nullable = false)
-    int telephone ;
-
-    @Column(nullable = false)
-    String password ;
-
     @Temporal(TemporalType.DATE)
-    @Column(nullable = false)
-    Date dateNaissance ;
+    Date dateNaissance;
 
-    String photo;
+    String email;
+
+    String password;
+
+    private String verificationCode;
+
+    private boolean verified = false;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name="user_roles",
-            joinColumns = @JoinColumn(name="id_user"),
-            inverseJoinColumns = @JoinColumn(name="id_role"))
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "id_user"),
+            inverseJoinColumns = @JoinColumn(name = "id"))
     private Set<Role> roles = new HashSet<>();
 
-    @OneToMany(mappedBy = "user")
-    Set<Availablity> availablities ;
-    @OneToMany(mappedBy = "user")
-    Set<Appointment> appointments;
-    @OneToMany(mappedBy = "user")
-    Set<Complaint> complaints;
-    @OneToMany(mappedBy = "user")
-    List<AnnonceHeberge> annonceHeberges;
+
+
     @OneToMany(mappedBy = "user")
     Set<University> universities;
     @OneToMany(mappedBy = "user")
@@ -66,13 +60,41 @@ public class User {
     Set<FollowUp> followUps;
     @OneToOne(mappedBy = "user")
     private Quiz quiz;
-
     @OneToMany(mappedBy = "user")
     private List<Abonnement> abonnements;
+
 
     @OneToMany(mappedBy = "user")
     private List<FavorisMobile> favorisMobiles;
     @OneToMany(mappedBy = "user")
     private List<FavorisHebergement> favorisHebergements;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CommentAnnonce> comments = new ArrayList<>();
+
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<AnnonceMobilte> annonceMobiltes = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<AnnonceHeberge> annonceHeberges = new ArrayList<>();
+
+
+
+    public User(String nom,String prenom,String username,String email,String password,Date dateNaissance){
+        this.nom = nom;
+        this.prenom =prenom ;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.dateNaissance = dateNaissance ;
+    }
+
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+
+
 
 }

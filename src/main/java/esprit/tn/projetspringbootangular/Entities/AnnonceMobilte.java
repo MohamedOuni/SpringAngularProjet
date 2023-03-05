@@ -5,6 +5,10 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -21,12 +25,20 @@ public class AnnonceMobilte implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_Annonce;
+    @NotBlank(message = "Le titre ne peut pas être vide")
+    @Size(max = 50, message = "Le titre ne peut pas dépasser {max} caractères")
     private String titre;
+    @NotBlank(message = "La description ne peut pas être vide")
     private String description_mobilite ;
+
+    @NotNull(message = "Le nombre de places ne peut pas être vide")
+    @Min(value = 1, message = "Le nombre de places doit être au moins {value}")
     private Integer NombreDePlace;
 
     private LocalDate  datePublicationn ;
-    private String photo ;
+
+    private String photo;
+
     @Temporal(TemporalType.DATE)
     private Date dateLimiteInsription;
     private String lieu  ;
@@ -36,6 +48,7 @@ public class AnnonceMobilte implements Serializable {
     private CategorieMobilite categorie;
     private  Integer LoveReact;
     private  Integer Signale;
+    private  Integer  sentiment_scor;
     @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE })
     private DetailMobilte details;
 
@@ -44,8 +57,8 @@ public class AnnonceMobilte implements Serializable {
     @JsonIgnore
     private List<FavorisMobile> favorisMobiles;
 
-    @ManyToOne (cascade = {CascadeType.PERSIST,CascadeType.REMOVE })
-    private  University university;
+
+
 
     @OneToMany(mappedBy = "annonceMobilte")
     private List<Abonnement> abonnements;
@@ -55,7 +68,11 @@ public class AnnonceMobilte implements Serializable {
 
     private List<Candidacy> candidacies ;
 
+    @OneToMany(mappedBy = "annonce",cascade = {CascadeType.PERSIST,CascadeType.REMOVE })
+    private  List<CommentAnnonce>commentAnnonces;
 
+@ManyToOne
+    User user;
 
 
 

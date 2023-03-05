@@ -16,9 +16,12 @@ public class Role {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id_role;
+    private Integer id;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    EnumRole role;
-}
+    @Column
+    private ERole name;
+
+    public Role(ERole name) {
+        this.name = name;
+    }}

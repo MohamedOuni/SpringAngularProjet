@@ -39,3 +39,5 @@ public class DetailMobilte implements Serializable {
     private AnnonceMobilte anMobilte;
 
 }
+
+

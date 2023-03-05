@@ -5,6 +5,8 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -20,11 +22,16 @@ public class AnnonceHeberge implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_AnnHeb ;
+    @NotBlank(message = "Le titre ne peut pas être vide")
+    @Size(max = 50, message = "Le titre ne peut pas dépasser {max} caractères")
     private String title;
+    @NotBlank(message = "La description ne peut pas être vide")
     private String description ;
     @Temporal(TemporalType.DATE)
     private Date datePub ;
-    private String image ;
+
+    @Lob
+    private byte[]  image ;
     private String adresse ;
     @Enumerated(EnumType.STRING)
     private Type type;
